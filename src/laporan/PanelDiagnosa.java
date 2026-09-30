@@ -735,31 +735,51 @@ public class PanelDiagnosa extends widget.panelisi {
     }//GEN-LAST:event_tbProsedurKeyPressed
 
     private void tbProsedurPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tbProsedurPropertyChange
-        i=1;
-        for(int z=0;z<tbProsedur.getRowCount();z++){ 
-            if(tbProsedur.getValueAt(z,0).toString().equals("true")){
-                tbProsedur.setValueAt(i,z,7);
-                if(tbProsedur.getValueAt(z,8).toString().equals("")){
-                    tbProsedur.setValueAt("1",z,8);
+       int maxUrut = 0;
+        for (int z = 0; z < tbProsedur.getRowCount(); z++) {
+            if (tbProsedur.getValueAt(z, 0).toString().equals("true")) {
+                Object val = tbProsedur.getValueAt(z, 7);
+                if (val != null && !val.toString().trim().equals("")) {
+                    try {
+                        int u = Integer.parseInt(val.toString().trim());
+                        if (u > maxUrut) maxUrut = u;
+                    } catch (NumberFormatException e) { }
                 }
-                if(tbProsedur.getValueAt(z,0).toString().equals("true")&&tbProsedur.getValueAt(z,4).toString().equals("0")){
-                    tbProsedur.setValueAt(false,z,0);
-                    tbProsedur.setValueAt("",z,7);
-                    tbProsedur.setValueAt("",z,8);
-                    JOptionPane.showMessageDialog(null,"Maaf, kode prosedur "+tbProsedur.getValueAt(z,1).toString()+" valid code 0. Hanya berfungsi sebagai header..!!");
-                }else if(tbProsedur.getValueAt(z,0).toString().equals("true")&&tbProsedur.getValueAt(z,4).toString().equals("1")){
-                    if(tbProsedur.getValueAt(z,5).toString().equals("N")&&tbProsedur.getValueAt(z,7).toString().equals("1")){
-                        tbProsedur.setValueAt(false,z,0);
-                        tbProsedur.setValueAt("",z,7);
-                        tbProsedur.setValueAt("",z,8);
-                        JOptionPane.showMessageDialog(null,"Maaf, kode prosedur "+tbProsedur.getValueAt(z,1).toString()+" Accpdx N. Tidak bisa menjadi prosedur utama..!!");
-                    }else{
-                        i++;
-                    }
+            }
+        }
+
+        int nextUrut = maxUrut + 1;
+        for (int z = 0; z < tbProsedur.getRowCount(); z++) {
+            if (tbProsedur.getValueAt(z, 0).toString().equals("true")) {
+                // Validasi validcode / accpdx
+                if (tbProsedur.getValueAt(z, 4).toString().equals("0")) {
+                    tbProsedur.setValueAt(false, z, 0);
+                    tbProsedur.setValueAt("", z, 7);
+                    tbProsedur.setValueAt("", z, 8);
+                    JOptionPane.showMessageDialog(null, "Maaf, kode prosedur " + tbProsedur.getValueAt(z, 1).toString() + " valid code 0. Hanya berfungsi sebagai header..!!");
+                    continue;
                 }
-            }else{
-                tbProsedur.setValueAt("",z,7);
-                tbProsedur.setValueAt("",z,8);
+                if (tbProsedur.getValueAt(z, 4).toString().equals("1")
+                        && tbProsedur.getValueAt(z, 5).toString().equals("N")
+                        && (tbProsedur.getValueAt(z, 7).toString().equals("1") || tbProsedur.getValueAt(z, 7).toString().equals(""))) {
+                    tbProsedur.setValueAt(false, z, 0);
+                    tbProsedur.setValueAt("", z, 7);
+                    tbProsedur.setValueAt("", z, 8);
+                    JOptionPane.showMessageDialog(null, "Maaf, kode prosedur " + tbProsedur.getValueAt(z, 1).toString() + " Accpdx N. Tidak bisa menjadi prosedur utama..!!");
+                    continue;
+                }
+
+                Object val = tbProsedur.getValueAt(z, 7);
+                if (val == null || val.toString().trim().equals("")) {
+                    tbProsedur.setValueAt(nextUrut, z, 7);
+                    nextUrut++;
+                }
+                if (tbProsedur.getValueAt(z, 8).toString().trim().equals("")) {
+                    tbProsedur.setValueAt("1", z, 8);
+                }
+            } else {
+                tbProsedur.setValueAt("", z, 7);
+                tbProsedur.setValueAt("", z, 8);
             }
         }
     }//GEN-LAST:event_tbProsedurPropertyChange
@@ -965,85 +985,191 @@ public class PanelDiagnosa extends widget.panelisi {
             System.out.println("Notifikasi : "+e);
         }
     }
-    
     private void tampilprosedure() {
-        try{
-            jml=0;
-            for(i=0;i<tbProsedur.getRowCount();i++){
-                if(tbProsedur.getValueAt(i,0).toString().equals("true")){
-                    jml++;
-                }
+    try{
+        jml=0;
+        for(i=0;i<tbProsedur.getRowCount();i++){
+            if(tbProsedur.getValueAt(i,0).toString().equals("true")){
+                jml++;
             }
-
-            pilih=new boolean[jml];
-            kode2=new String[jml];
-            panjang=new String[jml];
-            pendek=new String[jml];
-            validcode=new String[jml];
-            accpdx=new String[jml];
-            im=new String[jml];
-            urut=new String[jml];
-            multy=new String[jml];
-            index=0; 
-            for(i=0;i<tbProsedur.getRowCount();i++){
-                if(tbProsedur.getValueAt(i,0).toString().equals("true")){
-                    pilih[index]=true;
-                    kode2[index]=tbProsedur.getValueAt(i,1).toString();
-                    panjang[index]=tbProsedur.getValueAt(i,2).toString();
-                    pendek[index]=tbProsedur.getValueAt(i,3).toString();
-                    validcode[index]=tbProsedur.getValueAt(i,4).toString();
-                    accpdx[index]=tbProsedur.getValueAt(i,5).toString();
-                    im[index]=tbProsedur.getValueAt(i,6).toString();
-                    urut[index]=tbProsedur.getValueAt(i,7).toString();
-                    multy[index]=tbProsedur.getValueAt(i,8).toString();
-                    index++;
-                }
-            }
-
-            Valid.tabelKosong(tabModeProsedur);
-            for(i=0;i<jml;i++){
-                tabModeProsedur.addRow(new Object[] {pilih[i],kode2[i],panjang[i],pendek[i],validcode[i],accpdx[i],im[i],urut[i],multy[i]});
-            }
-            
-            pilih=null;
-            kode2=null;
-            panjang=null;
-            pendek=null;
-            validcode=null;
-            accpdx=null;
-            im=null;
-            urut=null;
-            multy=null;
-            
-            psprosedur=koneksi.prepareStatement(
-                    "select * from icd9 "+(Prosedur.getText().trim().equals("")?"":"where kode like ? or deskripsi_panjang like ? or  deskripsi_pendek like ?")+" order by kode");
-            try{
-                if(!Prosedur.getText().trim().equals("")){
-                    psprosedur.setString(1,"%"+Prosedur.getText().trim()+"%");
-                    psprosedur.setString(2,"%"+Prosedur.getText().trim()+"%");
-                    psprosedur.setString(3,"%"+Prosedur.getText().trim()+"%");
-                }
-                    
-                rs=psprosedur.executeQuery();
-                while(rs.next()){
-                    tabModeProsedur.addRow(new Object[]{
-                        false,rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),"",""
-                    });
-                }
-            }catch(Exception ex){
-                System.out.println(ex);
-            }finally{
-                if(rs != null){
-                    rs.close();
-                }
-                if(psprosedur != null){
-                    psprosedur.close();
-                }
-            }
-        }catch(Exception e){
-            System.out.println("Notifikasi : "+e);
         }
+
+        pilih=new boolean[jml];
+        kode2=new String[jml];
+        panjang=new String[jml];
+        pendek=new String[jml];
+        validcode=new String[jml];
+        accpdx=new String[jml];
+        im=new String[jml];
+        urut=new String[jml];
+        multy=new String[jml];
+        index=0; 
+        for(i=0;i<tbProsedur.getRowCount();i++){
+            if(tbProsedur.getValueAt(i,0).toString().equals("true")){
+                pilih[index]=true;
+                kode2[index]=tbProsedur.getValueAt(i,1).toString();
+                panjang[index]=tbProsedur.getValueAt(i,2).toString();
+                pendek[index]=tbProsedur.getValueAt(i,3).toString();
+                validcode[index]=tbProsedur.getValueAt(i,4).toString();
+                accpdx[index]=tbProsedur.getValueAt(i,5).toString();
+                im[index]=tbProsedur.getValueAt(i,6).toString();
+                urut[index]=tbProsedur.getValueAt(i,7).toString();
+                multy[index]=tbProsedur.getValueAt(i,8).toString();
+                index++;
+            }
+        }
+
+        Valid.tabelKosong(tabModeProsedur);
+        for(i=0;i<jml;i++){
+            tabModeProsedur.addRow(new Object[] {pilih[i],kode2[i],panjang[i],pendek[i],validcode[i],accpdx[i],im[i],urut[i],multy[i]});
+        }
+        
+        pilih=null;
+        kode2=null;
+        panjang=null;
+        pendek=null;
+        validcode=null;
+        accpdx=null;
+        im=null;
+        urut=null;
+        multy=null;
+        
+        psprosedur=koneksi.prepareStatement(
+                "select * from icd9 "+(Prosedur.getText().trim().equals("")?"":"where kode like ? or deskripsi_panjang like ? or  deskripsi_pendek like ?")+" order by kode");
+        try{
+            if(!Prosedur.getText().trim().equals("")){
+                psprosedur.setString(1,"%"+Prosedur.getText().trim()+"%");
+                psprosedur.setString(2,"%"+Prosedur.getText().trim()+"%");
+                psprosedur.setString(3,"%"+Prosedur.getText().trim()+"%");
+            }
+                
+            rs=psprosedur.executeQuery();
+            while(rs.next()){
+                tabModeProsedur.addRow(new Object[]{
+                    false,rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),"",""
+                });
+            }
+            // Tandai prosedur yang sudah tersimpan di norawat ini
+if (!norawat.trim().equals("")) {
+    PreparedStatement psCek = koneksi.prepareStatement(
+        "select kode, prioritas, jumlah from prosedur_pasien where no_rawat=?");
+    ResultSet rsCek = null;
+    try {
+        psCek.setString(1, norawat);
+        rsCek = psCek.executeQuery();
+        while (rsCek.next()) {
+            String kd = rsCek.getString("kode");
+            String pr = rsCek.getString("prioritas");
+            String jm = rsCek.getString("jumlah");
+            for (int r = 0; r < tabModeProsedur.getRowCount(); r++) {
+                if (tabModeProsedur.getValueAt(r, 1).toString().equals(kd)) {
+                    tabModeProsedur.setValueAt(true, r, 0);
+                    tabModeProsedur.setValueAt(pr, r, 7);
+                    tabModeProsedur.setValueAt(jm, r, 8);
+                    break;
+                }
+            }
+        }
+    } catch (Exception ex) {
+        System.out.println("Notifikasi cek prosedur tersimpan: " + ex);
+    } finally {
+        if (rsCek != null) rsCek.close();
+        if (psCek != null) psCek.close();
     }
+}
+        }catch(Exception ex){
+            System.out.println(ex);
+        }finally{
+            if(rs != null){
+                rs.close();
+            }
+            if(psprosedur != null){
+                psprosedur.close();
+            }
+        }
+    }catch(Exception e){
+        System.out.println("Notifikasi : "+e);
+    }
+}
+    
+//    private void tampilprosedure() {
+//        try{
+//            jml=0;
+//            for(i=0;i<tbProsedur.getRowCount();i++){
+//                if(tbProsedur.getValueAt(i,0).toString().equals("true")){
+//                    jml++;
+//                }
+//            }
+//
+//            pilih=new boolean[jml];
+//            kode2=new String[jml];
+//            panjang=new String[jml];
+//            pendek=new String[jml];
+//            validcode=new String[jml];
+//            accpdx=new String[jml];
+//            im=new String[jml];
+//            urut=new String[jml];
+//            multy=new String[jml];
+//            index=0; 
+//            for(i=0;i<tbProsedur.getRowCount();i++){
+//                if(tbProsedur.getValueAt(i,0).toString().equals("true")){
+//                    pilih[index]=true;
+//                    kode2[index]=tbProsedur.getValueAt(i,1).toString();
+//                    panjang[index]=tbProsedur.getValueAt(i,2).toString();
+//                    pendek[index]=tbProsedur.getValueAt(i,3).toString();
+//                    validcode[index]=tbProsedur.getValueAt(i,4).toString();
+//                    accpdx[index]=tbProsedur.getValueAt(i,5).toString();
+//                    im[index]=tbProsedur.getValueAt(i,6).toString();
+//                    urut[index]=tbProsedur.getValueAt(i,7).toString();
+//                    multy[index]=tbProsedur.getValueAt(i,8).toString();
+//                    index++;
+//                }
+//            }
+//
+//            Valid.tabelKosong(tabModeProsedur);
+//            for(i=0;i<jml;i++){
+//                tabModeProsedur.addRow(new Object[] {pilih[i],kode2[i],panjang[i],pendek[i],validcode[i],accpdx[i],im[i],urut[i],multy[i]});
+//            }
+//            
+//            pilih=null;
+//            kode2=null;
+//            panjang=null;
+//            pendek=null;
+//            validcode=null;
+//            accpdx=null;
+//            im=null;
+//            urut=null;
+//            multy=null;
+//            
+//            psprosedur=koneksi.prepareStatement(
+//                    "select * from icd9 "+(Prosedur.getText().trim().equals("")?"":"where kode like ? or deskripsi_panjang like ? or  deskripsi_pendek like ?")+" order by kode");
+//            try{
+//                if(!Prosedur.getText().trim().equals("")){
+//                    psprosedur.setString(1,"%"+Prosedur.getText().trim()+"%");
+//                    psprosedur.setString(2,"%"+Prosedur.getText().trim()+"%");
+//                    psprosedur.setString(3,"%"+Prosedur.getText().trim()+"%");
+//                }
+//                    
+//                rs=psprosedur.executeQuery();
+//                while(rs.next()){
+//                    tabModeProsedur.addRow(new Object[]{
+//                        false,rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),"",""
+//                    });
+//                }
+//            }catch(Exception ex){
+//                System.out.println(ex);
+//            }finally{
+//                if(rs != null){
+//                    rs.close();
+//                }
+//                if(psprosedur != null){
+//                    psprosedur.close();
+//                }
+//            }
+//        }catch(Exception e){
+//            System.out.println("Notifikasi : "+e);
+//        }
+//    }
     
     private void tampil2() {
         Valid.tabelKosong(TabModeTindakanPasien);
@@ -1192,7 +1318,7 @@ public class PanelDiagnosa extends widget.panelisi {
                tbDiagnosa.setValueAt("",i,11);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,"Maaf, gagal menyimpan data. Kemungkinan ada data diagnosa yang sama dimasukkan sebelumnya...!");
+            JOptionPane.showMessageDialog(null,"Kemungkinan ada data diagnosa yang sama dimasukkan sebelumnya...!");
         }
 
         try {
@@ -1256,7 +1382,7 @@ public class PanelDiagnosa extends widget.panelisi {
                tbProsedur.setValueAt("",i,8);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,"Maaf, gagal menyimpan data. Kemungkinan ada data prosedur/ICD9 yang sama dimasukkan sebelumnya...!");
+            JOptionPane.showMessageDialog(null,"Kemungkinan ada data prosedur/ICD9 yang sama dimasukkan sebelumnya...!");
         }
         pilihTab();
     }
