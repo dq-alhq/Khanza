@@ -5,6 +5,8 @@
 
 package rekammedis;
 
+import custom.DlgPilihPemeriksaanRanap;
+import custom.PilihPemeriksaan;
 import fungsi.WarnaTable;
 import fungsi.WarnaTable5;
 import fungsi.batasInput;
@@ -769,6 +771,7 @@ public final class RMPenilaianAwalMedisRanapNeonatus extends javax.swing.JDialog
         jLabel15 = new widget.Label();
         NIKIbu = new widget.TextBox();
         KeteranganDownScore = new widget.TextBox();
+        BtnSoap = new widget.Button();
         internalFrame3 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbObat = new widget.Table();
@@ -802,7 +805,6 @@ public final class RMPenilaianAwalMedisRanapNeonatus extends javax.swing.JDialog
         TanggalPersalinan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-02-2026" }));
         TanggalPersalinan.setDisplayFormat("dd-MM-yyyy");
         TanggalPersalinan.setName("TanggalPersalinan"); // NOI18N
-        TanggalPersalinan.setOpaque(false);
         panelBiasa2.add(TanggalPersalinan);
         TanggalPersalinan.setBounds(530, 10, 95, 23);
 
@@ -1112,7 +1114,6 @@ public final class RMPenilaianAwalMedisRanapNeonatus extends javax.swing.JDialog
         internalFrame1.add(panelGlass8, java.awt.BorderLayout.PAGE_END);
 
         TabRawat.setBackground(new java.awt.Color(254, 255, 254));
-        TabRawat.setForeground(new java.awt.Color(50, 50, 50));
         TabRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
 
@@ -1262,7 +1263,6 @@ public final class RMPenilaianAwalMedisRanapNeonatus extends javax.swing.JDialog
         TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-02-2026 20:15:28" }));
         TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
-        TglAsuhan.setOpaque(false);
         TglAsuhan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TglAsuhanKeyPressed(evt);
@@ -1535,7 +1535,6 @@ public final class RMPenilaianAwalMedisRanapNeonatus extends javax.swing.JDialog
         TglJamPersalinan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-02-2026 20:15:29" }));
         TglJamPersalinan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglJamPersalinan.setName("TglJamPersalinan"); // NOI18N
-        TglJamPersalinan.setOpaque(false);
         TglJamPersalinan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TglJamPersalinanKeyPressed(evt);
@@ -2025,7 +2024,7 @@ public final class RMPenilaianAwalMedisRanapNeonatus extends javax.swing.JDialog
         jLabel127.setText("%");
         jLabel127.setName("jLabel127"); // NOI18N
         FormInput.add(jLabel127);
-        jLabel127.setBounds(842, 810, 40, 23);
+        jLabel127.setBounds(842, 810, 20, 23);
 
         jLabel58.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel58.setText("Frekuensi Napas");
@@ -2853,6 +2852,16 @@ public final class RMPenilaianAwalMedisRanapNeonatus extends javax.swing.JDialog
         FormInput.add(KeteranganDownScore);
         KeteranganDownScore.setBounds(576, 760, 230, 23);
 
+        BtnSoap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/tag.png"))); // NOI18N
+        BtnSoap.setName("BtnSoap"); // NOI18N
+        BtnSoap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSoapActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnSoap);
+        BtnSoap.setBounds(860, 810, 30, 22);
+
         scrollInput.setViewportView(FormInput);
 
         internalFrame2.add(scrollInput, java.awt.BorderLayout.CENTER);
@@ -2896,7 +2905,6 @@ public final class RMPenilaianAwalMedisRanapNeonatus extends javax.swing.JDialog
         DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-02-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
-        DTPCari1.setOpaque(false);
         DTPCari1.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(DTPCari1);
 
@@ -2910,7 +2918,6 @@ public final class RMPenilaianAwalMedisRanapNeonatus extends javax.swing.JDialog
         DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-02-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
-        DTPCari2.setOpaque(false);
         DTPCari2.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(DTPCari2);
 
@@ -4036,6 +4043,34 @@ public final class RMPenilaianAwalMedisRanapNeonatus extends javax.swing.JDialog
         }
     }//GEN-LAST:event_formWindowOpened
 
+    private void BtnSoapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSoapActionPerformed
+        if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan anda pilih dulu pasien...!!!");
+            TNoRw.requestFocus();
+        } else {
+            DlgPilihPemeriksaanRanap dlg = new DlgPilihPemeriksaanRanap(this, TNoRw.getText());
+            dlg.setVisible(true);
+            PilihPemeriksaan p = dlg.getSelectedItem();
+            if (p != null) {
+                Diagnosis.setText(p.getPenilaian());
+
+                // Map Vital Signs
+                Nadi.setText(p.getNadi());
+                RR.setText(p.getRespirasi());
+                Suhu.setText(p.getSuhuTubuh());
+                PanjangBadan.setText(p.getTinggi());
+                BeratBadan.setText(p.getBerat());
+                Saturasi.setText(p.getSpo2());
+
+                String TataLaksanaRTL = p.getRtl().trim().equals("") ? "" : "RTL: " + p.getRtl() + "\n";
+                String TataLaksanaInst = p.getInstruksi().trim().equals("") ? "" : "Inst/Impl: " + p.getInstruksi() + "\n";
+                String TataLaksanaEval = p.getEvaluasi().trim().equals("") ? "" : "Evaluasi: " + p.getEvaluasi();
+
+                Tatalaksana.setText(TataLaksanaRTL + TataLaksanaInst + TataLaksanaEval);
+            }
+        }
+    }//GEN-LAST:event_BtnSoapActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -4074,6 +4109,7 @@ public final class RMPenilaianAwalMedisRanapNeonatus extends javax.swing.JDialog
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
     private widget.Button BtnSimpanRiwayatKehamilan;
+    private widget.Button BtnSoap;
     private widget.Button BtnTambahMasalah;
     private widget.ComboBox CairanAmnion;
     private widget.Tanggal DTPCari1;

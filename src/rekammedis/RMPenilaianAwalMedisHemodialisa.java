@@ -5,6 +5,8 @@
 
 package rekammedis;
 
+import custom.DlgPilihPemeriksaanRalan;
+import custom.PilihPemeriksaan;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -562,6 +564,7 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         jLabel96 = new widget.Label();
         jSeparator6 = new javax.swing.JSeparator();
         jLabel102 = new widget.Label();
+        BtnSoap = new widget.Button();
         internalFrame3 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbObat = new widget.Table();
@@ -746,7 +749,6 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         internalFrame1.add(panelGlass8, java.awt.BorderLayout.PAGE_END);
 
         TabRawat.setBackground(new java.awt.Color(254, 255, 254));
-        TabRawat.setForeground(new java.awt.Color(50, 50, 50));
         TabRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
         TabRawat.setPreferredSize(new java.awt.Dimension(457, 480));
@@ -1102,7 +1104,6 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-02-2026 19:04:35" }));
         TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
-        TglAsuhan.setOpaque(false);
         TglAsuhan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TglAsuhanActionPerformed(evt);
@@ -1483,7 +1484,6 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         TglThorax.setDisplayFormat("dd-MM-yyyy");
         TglThorax.setEnabled(false);
         TglThorax.setName("TglThorax"); // NOI18N
-        TglThorax.setOpaque(false);
         TglThorax.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TglThoraxKeyPressed(evt);
@@ -1496,7 +1496,6 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         TglDialisis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-02-2026" }));
         TglDialisis.setDisplayFormat("dd-MM-yyyy");
         TglDialisis.setName("TglDialisis"); // NOI18N
-        TglDialisis.setOpaque(false);
         TglDialisis.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TglDialisisKeyPressed(evt);
@@ -1516,7 +1515,6 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         TglEKG.setDisplayFormat("dd-MM-yyyy");
         TglEKG.setEnabled(false);
         TglEKG.setName("TglEKG"); // NOI18N
-        TglEKG.setOpaque(false);
         TglEKG.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TglEKGKeyPressed(evt);
@@ -1536,7 +1534,6 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         TglBNO.setDisplayFormat("dd-MM-yyyy");
         TglBNO.setEnabled(false);
         TglBNO.setName("TglBNO"); // NOI18N
-        TglBNO.setOpaque(false);
         TglBNO.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TglBNOKeyPressed(evt);
@@ -1550,7 +1547,6 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         TglUSG.setDisplayFormat("dd-MM-yyyy");
         TglUSG.setEnabled(false);
         TglUSG.setName("TglUSG"); // NOI18N
-        TglUSG.setOpaque(false);
         TglUSG.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TglUSGKeyPressed(evt);
@@ -1576,7 +1572,6 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         TglRenogram.setDisplayFormat("dd-MM-yyyy");
         TglRenogram.setEnabled(false);
         TglRenogram.setName("TglRenogram"); // NOI18N
-        TglRenogram.setOpaque(false);
         TglRenogram.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TglRenogramKeyPressed(evt);
@@ -1590,7 +1585,6 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         TglLaboratorium.setDisplayFormat("dd-MM-yyyy");
         TglLaboratorium.setEnabled(false);
         TglLaboratorium.setName("TglLaboratorium"); // NOI18N
-        TglLaboratorium.setOpaque(false);
         TglLaboratorium.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TglLaboratoriumKeyPressed(evt);
@@ -1622,7 +1616,6 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         TglKultururin.setDisplayFormat("dd-MM-yyyy");
         TglKultururin.setEnabled(false);
         TglKultururin.setName("TglKultururin"); // NOI18N
-        TglKultururin.setOpaque(false);
         TglKultururin.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TglKultururinKeyPressed(evt);
@@ -1636,7 +1629,6 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         TglArteriografi.setDisplayFormat("dd-MM-yyyy");
         TglArteriografi.setEnabled(false);
         TglArteriografi.setName("TglArteriografi"); // NOI18N
-        TglArteriografi.setOpaque(false);
         TglArteriografi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TglArteriografiKeyPressed(evt);
@@ -1650,7 +1642,6 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         TglCTscan.setDisplayFormat("dd-MM-yyyy");
         TglCTscan.setEnabled(false);
         TglCTscan.setName("TglCTscan"); // NOI18N
-        TglCTscan.setOpaque(false);
         TglCTscan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TglCTscanKeyPressed(evt);
@@ -1664,7 +1655,6 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         TglBiopsi.setDisplayFormat("dd-MM-yyyy");
         TglBiopsi.setEnabled(false);
         TglBiopsi.setName("TglBiopsi"); // NOI18N
-        TglBiopsi.setOpaque(false);
         TglBiopsi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TglBiopsiKeyPressed(evt);
@@ -2066,7 +2056,6 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         TglCAPD.setDisplayFormat("dd-MM-yyyy");
         TglCAPD.setEnabled(false);
         TglCAPD.setName("TglCAPD"); // NOI18N
-        TglCAPD.setOpaque(false);
         TglCAPD.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TglCAPDKeyPressed(evt);
@@ -2080,7 +2069,6 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         TglTransplantasi.setDisplayFormat("dd-MM-yyyy");
         TglTransplantasi.setEnabled(false);
         TglTransplantasi.setName("TglTransplantasi"); // NOI18N
-        TglTransplantasi.setOpaque(false);
         TglTransplantasi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TglTransplantasiKeyPressed(evt);
@@ -2347,6 +2335,16 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         FormInput.add(jLabel102);
         jLabel102.setBounds(10, 880, 190, 23);
 
+        BtnSoap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/tag.png"))); // NOI18N
+        BtnSoap.setName("BtnSoap"); // NOI18N
+        BtnSoap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSoapActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnSoap);
+        BtnSoap.setBounds(860, 380, 30, 20);
+
         scrollInput.setViewportView(FormInput);
 
         internalFrame2.add(scrollInput, java.awt.BorderLayout.CENTER);
@@ -2391,7 +2389,6 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-02-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
-        DTPCari1.setOpaque(false);
         DTPCari1.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(DTPCari1);
 
@@ -2405,7 +2402,6 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-02-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
-        DTPCari2.setOpaque(false);
         DTPCari2.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(DTPCari2);
 
@@ -3428,6 +3424,28 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_formWindowOpened
 
+    private void BtnSoapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSoapActionPerformed
+        if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan anda pilih dulu pasien...!!!");
+            TNoRw.requestFocus();
+        } else {
+            DlgPilihPemeriksaanRalan dlg = new DlgPilihPemeriksaanRalan(this, TNoRw.getText());
+            dlg.setVisible(true);
+            PilihPemeriksaan p = dlg.getSelectedItem();
+            if (p != null) {
+                Alergi.setText(p.getAlergi());
+
+                // Map Vital Signs
+                TD.setText(p.getTensi());
+                Nadi.setText(p.getNadi());
+                Suhu.setText(p.getSuhuTubuh());
+                TB.setText(p.getTinggi());
+                BB.setText(p.getBerat());
+                Kesadaran.setSelectedItem(p.getKesadaran());
+            }
+        }
+    }//GEN-LAST:event_BtnSoapActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3464,6 +3482,7 @@ public final class RMPenilaianAwalMedisHemodialisa extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
+    private widget.Button BtnSoap;
     private widget.ComboBox CAPD;
     private widget.TextBox CCT;
     private widget.TextBox CT;

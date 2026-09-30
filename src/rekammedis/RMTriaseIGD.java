@@ -12,6 +12,8 @@
 
 package rekammedis;
 
+import custom.DlgPilihPemeriksaanRalan;
+import custom.PilihPemeriksaan;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -435,6 +437,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         jLabel27 = new widget.Label();
         PrimerTensi = new widget.TextBox();
         jLabel11 = new widget.Label();
+        BtnSoap = new widget.Button();
         internalFrame8 = new widget.InternalFrame();
         jLabel12 = new widget.Label();
         PrimerKodePetugas = new widget.TextBox();
@@ -485,6 +488,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         jLabel33 = new widget.Label();
         SekunderTensi = new widget.TextBox();
         jLabel15 = new widget.Label();
+        BtnSoap1 = new widget.Button();
         internalFrame12 = new widget.InternalFrame();
         jLabel30 = new widget.Label();
         SekunderKodePetugas = new widget.TextBox();
@@ -591,7 +595,6 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         TabPilihan.setBackground(new java.awt.Color(255, 255, 254));
-        TabPilihan.setForeground(new java.awt.Color(50, 50, 50));
         TabPilihan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabPilihan.setName("TabPilihan"); // NOI18N
         TabPilihan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -610,7 +613,6 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         TabTriase.setBackground(new java.awt.Color(255, 255, 254));
         TabTriase.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        TabTriase.setForeground(new java.awt.Color(50, 50, 50));
         TabTriase.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabTriase.setName("TabTriase"); // NOI18N
         TabTriase.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -761,6 +763,16 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         internalFrame7.add(jLabel11);
         jLabel11.setBounds(420, 40, 59, 23);
 
+        BtnSoap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/tag.png"))); // NOI18N
+        BtnSoap.setName("BtnSoap"); // NOI18N
+        BtnSoap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSoapActionPerformed(evt);
+            }
+        });
+        internalFrame7.add(BtnSoap);
+        BtnSoap.setBounds(690, 10, 32, 22);
+
         internalFrame5.add(internalFrame7, java.awt.BorderLayout.PAGE_START);
 
         internalFrame8.setBorder(null);
@@ -820,10 +832,9 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         jLabel28.setBounds(362, 10, 90, 23);
 
         PrimerTanggalTriase.setForeground(new java.awt.Color(50, 70, 50));
-        PrimerTanggalTriase.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2023 11:11:45" }));
+        PrimerTanggalTriase.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2026 13:57:29" }));
         PrimerTanggalTriase.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         PrimerTanggalTriase.setName("PrimerTanggalTriase"); // NOI18N
-        PrimerTanggalTriase.setOpaque(false);
         PrimerTanggalTriase.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 PrimerTanggalTriaseKeyPressed(evt);
@@ -1023,7 +1034,6 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         TabSkala1dan2.setBackground(new java.awt.Color(255, 255, 254));
         TabSkala1dan2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        TabSkala1dan2.setForeground(new java.awt.Color(50, 50, 50));
         TabSkala1dan2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabSkala1dan2.setName("TabSkala1dan2"); // NOI18N
         TabSkala1dan2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1191,6 +1201,16 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         internalFrame11.add(jLabel15);
         jLabel15.setBounds(395, 70, 59, 23);
 
+        BtnSoap1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/tag.png"))); // NOI18N
+        BtnSoap1.setName("BtnSoap1"); // NOI18N
+        BtnSoap1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSoap1ActionPerformed(evt);
+            }
+        });
+        internalFrame11.add(BtnSoap1);
+        BtnSoap1.setBounds(690, 10, 32, 22);
+
         internalFrame10.add(internalFrame11, java.awt.BorderLayout.PAGE_START);
 
         internalFrame12.setBorder(null);
@@ -1247,10 +1267,9 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         jLabel37.setBounds(362, 10, 90, 23);
 
         SekunderTanggalTriase.setForeground(new java.awt.Color(50, 70, 50));
-        SekunderTanggalTriase.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2023 11:11:46" }));
+        SekunderTanggalTriase.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2026 13:57:31" }));
         SekunderTanggalTriase.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         SekunderTanggalTriase.setName("SekunderTanggalTriase"); // NOI18N
-        SekunderTanggalTriase.setOpaque(false);
         SekunderTanggalTriase.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 SekunderTanggalTriaseKeyPressed(evt);
@@ -1449,7 +1468,6 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         TabSkala3dan4dan5.setBackground(new java.awt.Color(255, 255, 254));
         TabSkala3dan4dan5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        TabSkala3dan4dan5.setForeground(new java.awt.Color(50, 50, 50));
         TabSkala3dan4dan5.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabSkala3dan4dan5.setName("TabSkala3dan4dan5"); // NOI18N
         TabSkala3dan4dan5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1541,10 +1559,9 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         jLabel18.setBounds(0, 40, 89, 23);
 
         TanggalKunjungan.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalKunjungan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2023 11:11:47" }));
+        TanggalKunjungan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2026 13:57:32" }));
         TanggalKunjungan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TanggalKunjungan.setName("TanggalKunjungan"); // NOI18N
-        TanggalKunjungan.setOpaque(false);
         TanggalKunjungan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TanggalKunjunganKeyPressed(evt);
@@ -1700,10 +1717,9 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
-        DTPCari1.setOpaque(false);
         DTPCari1.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(DTPCari1);
 
@@ -1714,10 +1730,9 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
-        DTPCari2.setOpaque(false);
         DTPCari2.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(DTPCari2);
 
@@ -4517,6 +4532,62 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnPrint1ActionPerformed
 
+    private void BtnSoapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSoapActionPerformed
+        if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan anda pilih dulu pasien...!!!");
+            TNoRw.requestFocus();
+        } else {
+            DlgPilihPemeriksaanRalan dlg = new DlgPilihPemeriksaanRalan(this, TNoRw.getText());
+            dlg.setVisible(true);
+            PilihPemeriksaan p = dlg.getSelectedItem();
+            if (p != null) {
+                PrimerKeluhanUtama.setText(p.getKeluhan());
+                SekunderAnamnesa.setText("");
+
+                // Map Vital Signs
+                PrimerTensi.setText(p.getTensi());
+                PrimerNadi.setText(p.getNadi());
+                PrimerRespirasi.setText(p.getRespirasi());
+                PrimerSuhu.setText(p.getSuhuTubuh());
+                PrimerSaturasi.setText(p.getSpo2());
+
+                SekunderTensi.setText("");
+                SekunderNadi.setText("");
+                SekunderRespirasi.setText("");
+                SekunderSuhu.setText("");
+                SekunderSaturasi.setText("");
+            }
+        }
+    }//GEN-LAST:event_BtnSoapActionPerformed
+
+    private void BtnSoap1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSoap1ActionPerformed
+        if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan anda pilih dulu pasien...!!!");
+            TNoRw.requestFocus();
+        } else {
+            DlgPilihPemeriksaanRalan dlg = new DlgPilihPemeriksaanRalan(this, TNoRw.getText());
+            dlg.setVisible(true);
+            PilihPemeriksaan p = dlg.getSelectedItem();
+            if (p != null) {
+                PrimerKeluhanUtama.setText("");
+                SekunderAnamnesa.setText(p.getKeluhan());
+
+                // Map Vital Signs
+                SekunderTensi.setText(p.getTensi());
+                SekunderNadi.setText(p.getNadi());
+                SekunderRespirasi.setText(p.getRespirasi());
+                SekunderSuhu.setText(p.getSuhuTubuh());
+                SekunderSaturasi.setText(p.getSpo2());
+
+                PrimerTensi.setText("");
+                PrimerNadi.setText("");
+                PrimerRespirasi.setText("");
+                PrimerSuhu.setText("");
+                PrimerSaturasi.setText("");
+            }
+        }
+    }//GEN-LAST:event_BtnSoap1ActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -4548,6 +4619,8 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     private widget.Button BtnPrint;
     private widget.Button BtnPrint1;
     private widget.Button BtnSimpan;
+    private widget.Button BtnSoap;
+    private widget.Button BtnSoap1;
     private widget.Button BtnTambahPemeriksaan;
     private widget.Button BtnTambahPemeriksaan1;
     private widget.Button BtnTambahSkala1;
